@@ -1,18 +1,18 @@
 import { type FC } from 'react';
-import Typography from '@mui/material/Typography';
-import itemData from '../data/itemData';
 import { Gallery } from '../components';
 import { useParams } from 'react-router';
+import { useGallery } from '../hooks/useGallery';
+import Typography from '@mui/material/Typography';
 
 export const GalleryPage: FC = () => {
     const { id } = useParams<{ id: string }>();
+    const { items, title } = useGallery(id);
     return (
         <div>
             <Typography variant="h4" component="h1" gutterBottom>
-                Gallery {id}
+                {title}
             </Typography>
-            <Gallery items={itemData} />
+            <Gallery items={items} />
         </div>
     );
 };
-

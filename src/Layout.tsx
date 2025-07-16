@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import type { FC } from 'react';
-import { Outlet } from 'react-router';
+import { Outlet, useNavigate } from 'react-router';
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -27,6 +27,7 @@ export type LayoutProps = {
 };
 
 const Layout: FC<LayoutProps> = ({ menuItems }) => {
+  const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -97,9 +98,11 @@ const Layout: FC<LayoutProps> = ({ menuItems }) => {
                 sx={{ display: { xs: 'block', md: 'none' } }}
               >
                 {menuItems.map((item) => (
-                  <MenuItem key={item.key} onClick={() => {
-                    handleCloseNavMenu();
-                  }}>
+                  <MenuItem key={item.key}
+                    onClick={() => {
+                      navigate(item.url || '/');
+                      handleCloseNavMenu();
+                    }}>
                     <Typography sx={{ textAlign: 'center' }}>
                       {item.label}
                     </Typography>
@@ -130,8 +133,11 @@ const Layout: FC<LayoutProps> = ({ menuItems }) => {
               {menuItems.map((item) => (
                 <Button
                   key={item.key}
-                  onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: 'white', display: 'block' }}
+                  onClick={() => {
+                    navigate(item.url || '/');
+                    handleCloseNavMenu();
+                  }}
                 >
                   {item.label}
                 </Button>

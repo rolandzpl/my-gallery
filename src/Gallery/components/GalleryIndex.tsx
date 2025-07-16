@@ -1,5 +1,6 @@
 import { type FC } from "react";
 import { ImageList, ImageListItem } from "@mui/material";
+import { useNavigate } from "react-router";
 
 export type GalleryIndexProps = {
     items: {
@@ -11,6 +12,7 @@ export type GalleryIndexProps = {
 };
 
 const GalleryIndex: FC<GalleryIndexProps> = ({ items }) => {
+    const navigate = useNavigate()
     return (<ImageList variant="masonry" cols={3} gap={8}>
         {items.map((item) => (
             <ImageListItem key={item.img}>
@@ -20,6 +22,9 @@ const GalleryIndex: FC<GalleryIndexProps> = ({ items }) => {
                     alt={item.title}
                     loading="lazy"
                     style={{ borderRadius: 8 }}
+                    onClick={() => {
+                        navigate(`/gallery/${item.id}`)
+                    }}
                 />
             </ImageListItem>
         ))}
