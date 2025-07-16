@@ -1,4 +1,5 @@
 import Gallery, { type GalleryProps } from "./Gallery";
+import GalleryIndex from "./GalleryIndex";
 
-export { Gallery };
+export { GalleryIndex, Gallery };
 export type { GalleryProps };

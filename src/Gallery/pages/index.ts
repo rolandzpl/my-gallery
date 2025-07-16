@@ -1,3 +1,4 @@
-import GalleryPage from "./GalleryPage";
+import GalleryIndex from "./GalleryIndex";
+import { GalleryPage } from "./GalleryPage";
 
-export default GalleryPage;
+export { GalleryIndex, GalleryPage };
