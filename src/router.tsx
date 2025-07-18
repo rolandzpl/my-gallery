@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import AdminPage from "./Admin/pages";
 import Layout from "./Layout";
-import { GalleryIndex, GalleryPage } from "./Gallery/pages";
+import { GalleryCreate, GalleryIndex, GalleryPage } from "./Gallery/pages";
 import { HomePage } from "./Home/pages";
 
 const router = createBrowserRouter([
@@ -27,6 +27,10 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <GalleryIndex />,
+          },
+          {
+            path: "create",
+            element: <GalleryCreate />,
           },
           {
             path: ":id",
