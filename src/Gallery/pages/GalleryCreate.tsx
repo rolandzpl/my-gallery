@@ -32,6 +32,7 @@ const GalleryCreate: React.FC = () => {
     const [formData, setFormData] = useState<GalleryFormData>({
         title: "",
         description: "",
+        password: "",
         images: [],
     });
 
@@ -156,7 +157,7 @@ const GalleryCreate: React.FC = () => {
                 <Typography>Description:</Typography>
                 <Typography>{formData.description}</Typography>
                 <Typography>Image #:</Typography>
-                <Typography>{formData.images.length}</Typography>
+                <Typography>{formData.images.length}</Typography> 
             </Paper>
         </Box>
     );

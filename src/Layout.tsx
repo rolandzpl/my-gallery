@@ -14,11 +14,15 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import type { FC } from 'react';
 import { Outlet, useNavigate } from 'react-router';
-
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+import { Dialog, DialogTitle } from '@mui/material';
 
 export type LayoutProps = {
   children?: React.ReactNode;
+  settings: {
+    key: string | null | undefined;
+    label: string | React.ReactNode;
+    handler?: () => void;
+  }[] | [];
   menuItems: {
     key: string | null | undefined;
     label: React.ReactNode | string;
@@ -26,7 +30,7 @@ export type LayoutProps = {
   }[] | [];
 };
 
-const Layout: FC<LayoutProps> = ({ menuItems }) => {
+const Layout: FC<LayoutProps> = ({ menuItems, settings }) => {
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
@@ -166,8 +170,12 @@ const Layout: FC<LayoutProps> = ({ menuItems }) => {
                 onClose={handleCloseUserMenu}
               >
                 {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
+                  <MenuItem key={setting?.key}
+                    onClick={() => {
+                      handleCloseUserMenu();
+                      setting.handler && setting.handler();
+                    }}>
+                    <Typography sx={{ textAlign: 'center' }}>{setting?.label}</Typography>
                   </MenuItem>
                 ))}
               </Menu>
@@ -178,7 +186,26 @@ const Layout: FC<LayoutProps> = ({ menuItems }) => {
       <div>
         <Outlet />
       </div>
+      <LoginDialog />
     </div>
   );
 }
+
+export type LoginDialogProps = {
+  open: boolean;
+  onClose: (value: string) => void;
+}
+
+const LoginDialog: FC<LoginDialogProps> = ({ open, onClose }) => {
+  const handleClose = () => {
+    onClose('');
+  };
+
+  return (
+    <Dialog onClose={handleClose} open={open}>
+      <DialogTitle>Set backup account</DialogTitle>
+    </Dialog>
+  );
+}
+
 export default Layout;

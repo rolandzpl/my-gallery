@@ -28,7 +28,7 @@ export default function FileUploader() {
 
     try {
       await axios
-        .post("http://192.168.0.195:5001/ig/images/converted?padding=50&targetWidth=2048&targetHeight=2048&borderWidth=20",
+        .post("http://api.lithium.com.pl/ig/images/converted?padding=50&targetWidth=2048&targetHeight=2048&borderWidth=20",
           formData,
           {
             responseType: 'blob',

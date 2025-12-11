@@ -48,13 +48,17 @@ const router = createBrowserRouter([
         ]
       },
     ],
-    element: (<Layout menuItems={[
-      { key: 'home', label: 'Home', url: '/' },
-      { key: 'image-converter', label: 'Image Converter', url: '/image-converter' },
-      { key: 'galleries', label: 'Galleries', url: '/gallery' },
-      { key: 'about', label: 'About', url: '/about' },
-      { key: 'contact', label: 'Contact', url: '/contact' }
-    ]} />),
+    element: (<Layout
+      settings={[
+        { key: "login", label: "Login" , handler: () => { alert(); } },
+      ]}
+      menuItems={[
+        { key: 'home', label: 'Home', url: '/' },
+        { key: 'image-converter', label: 'Image Converter', url: '/image-converter' },
+        { key: 'galleries', label: 'Galleries', url: '/gallery' },
+        { key: 'about', label: 'About', url: '/about' },
+        { key: 'contact', label: 'Contact', url: '/contact' }
+      ]} />),
   }
 ]);
 

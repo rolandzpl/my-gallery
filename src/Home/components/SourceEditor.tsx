@@ -1,0 +1,1 @@
+export const SourceEditor = () => <div>Source Code Editor Placeholder</div>;
